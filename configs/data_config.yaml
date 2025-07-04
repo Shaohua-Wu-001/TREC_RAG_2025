@@ -5,8 +5,8 @@ corpus:
   raw_dir: "data/corpus/raw"
   processed_dir: "data/corpus/processed"
   validation_dir: "data/corpus/validation"
-  file_pattern: "*.jsonl.gz"
-  batch_size: 1000
+  file_pattern: "*.jsonl.gz"        # 若不是 .gz，請改為 "*.jsonl"
+  batch_size: 500                   # 避免記憶體壓力，調降為 500
 
 # Preprocessing Settings
 preprocessing:
@@ -22,11 +22,11 @@ preprocessing:
 validation:
   check_md5: true
   validate_json: true
-  sample_size: 1000
-  log_dir: "logs/data_processing"
+  sample_size: 500                 # 減少初期 sample size，避免空資料 crash
+  log_dir: "logs/data_processing" # 請確認 logs 資料夾存在或程式會自動建立
 
 # Storage Settings
 storage:
   cache_dir: "data/cache"
   temp_dir: "data/temp"
-  max_cache_size: "10GB" 
+  max_cache_size: "5GB"            # 降低初期快取空間限制，避免配額爆掉
